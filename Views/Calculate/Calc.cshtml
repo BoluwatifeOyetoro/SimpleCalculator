@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Calculate Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Calculate Square root</h1>
+
+    <br />
+
+    <p>Please input two numbers to calculate their square roots and find highest square root.</p>
+</div>
+
+<br />
+
+<div class="text-center">
+    <form type="text" asp-controller="Calculate" asp-action="Calc" method="post">
+        <input 
+            style="margin-right: 10px"
+            type="number" 
+            asp-controller="Calculate" 
+            asp-action="Calc" name="FirstNumber" 
+            placeholder="Input first number" required
+            />
+
+        <input 
+            style="margin-left: 10px"
+            type="number" 
+            asp-controller="Calculate" 
+            asp-action="Calc" name="SecondNumber" 
+            placeholder="Input second number" required
+           />
+
+           <br />
+        <button
+            style="margin-top: 20px"
+            type="submit">Calculate</button>
+    </form>
+</div>
+
+<br />
+
+
+
+<br />
+
+@{
+    if(ViewBag.firstSqrt != null && ViewBag.secondSqrt != null)
+    {
+    <div class="text-center">
+        @{
+            if(@ViewBag.firstSqrt > @ViewBag.secondSqrt)
+            {
+                <h3 class="text-success">
+                    The number @ViewBag.first with square root @ViewBag.firstSqrt has a higher square root than
+                    the number @ViewBag.second with square root @ViewBag.secondSqrt
+                </h3>
+            }
+
+            if(@ViewBag.secondSqrt > @ViewBag.firstSqrt)
+            {
+                <h3 class="text-success">
+                    The number @ViewBag.second with square root @ViewBag.secondSqrt has a higher number square root than
+                    the number @ViewBag.first with square root @ViewBag.firstSqrt
+                </h3>
+            }
+
+            if(@ViewBag.firstSqrt == @ViewBag.SecondSqrt)
+            {
+                <h3 class="text-success">
+                    The number @ViewBag.first with square root @ViewBag.firstSqrt has the same value as
+                    the number @ViewBag.second with square root @ViewBag.secondSqrt
+                </h3>
+                <p>Please, try a different number!</p>
+            }
+        }
+    </div>
+    }
+}
+
+@{
+    if (ViewBag.NegNumError != null)
+    {
+        <div class="text-center">
+            <h3 class="text-danger">
+                @ViewBag.NegNumError
+            </h3>
+        </div>
+    }
+}
+
+@{
+    if (ViewBag.errorMessageEmpty != null)
+    {
+        <div class="text-center">
+            <h3 class="text-danger">
+                @ViewBag.errorMessageEmpty
+            </h3>
+        </div>
+    }
+}
+
+@{
+    if (ViewBag.alphErr != null)
+    {
+        <div class="text-center">
+            <h3 class="text-danger">
+                @ViewBag.alphErr
+            </h3>
+        </div>
+    }
+}
